@@ -1,0 +1,17 @@
+{
+    "name": "user/mvc-framework",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "cryptokiddd",
+            "email": "avaliani1232@gmail.com"
+        }
+    ],
+  
+
+    "require": {}
+}
