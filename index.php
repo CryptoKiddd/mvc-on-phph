@@ -6,7 +6,10 @@ use app\core\Application;
 $app = new Application();
 
 $app->router->get('/', function(){
-  echo 'hello world';
+  echo 'index page';
+});
+$app->router->get('/users', function(){
+  echo 'users page';
 });
 
 $app->run();
