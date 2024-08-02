@@ -36,9 +36,10 @@ protected function renderOnlyView($view,$params){
 }
 
 
-protected function layoutContent(){
+public function layoutContent(){
+  $layout = Application::$app->controller->layout;
   ob_start();
-  include_once Application::$ROOT_DIR."/views/layouts/main.php";
+  include_once Application::$ROOT_DIR."/views/layouts/$layout.php";
   return ob_get_clean();
 
 
@@ -69,9 +70,8 @@ public function renderContent($viewContent){
 
    };
    if(is_array($callback)){
-    $controller = new $callback[0]();
-    $method = $callback[1];
-    $callback = [$controller, $method];
+    Application::$app->controller = new $callback[0]();
+    
    }
 
 

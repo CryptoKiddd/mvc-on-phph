@@ -10,39 +10,7 @@
   </head>
   <body>
 
-
-      <ul class="nav">
-    
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/contact">Contact</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/users">Users</a>
-      </li>
-      <ul class="nav ms-10">
-    
-    <li class="nav-item ml-3">
-    <a class="nav-link" href="/login">Login</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/register">Register</a>
-  </li>
-  </ul>
-    
-    
-      
-    
-    
-    
-    
-    
-    
-      </ul>
      
-   
 
 
   <div class="container">
