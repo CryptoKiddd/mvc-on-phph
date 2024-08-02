@@ -20,12 +20,22 @@ public function get($path,$callback){
  
 
 }
+public function post($path,$callback){
+  $this->routes['post'][$path]=$callback;
 
-protected function renderOnlyView($view){
+}
+
+protected function renderOnlyView($view,$params){
+ foreach ($params as $key => $value) {
+  $$key = $value;
+ }
+
   ob_start();
   include_once Application::$ROOT_DIR."/views/$view.php";
   return ob_get_clean();
 }
+
+
 protected function layoutContent(){
   ob_start();
   include_once Application::$ROOT_DIR."/views/layouts/main.php";
@@ -33,9 +43,13 @@ protected function layoutContent(){
 
 
 }
-public function renderView($view){
+public function renderView($view, $params=[]){
   $layoutContent =$this->layoutContent();
-  $viewContent = $this->renderOnlyView($view);
+  $viewContent = $this->renderOnlyView($view,$params);
+  return str_replace('{{content}}', $viewContent, $layoutContent);
+}
+public function renderContent($viewContent){
+  $layoutContent =$this->layoutContent();
   return str_replace('{{content}}', $viewContent, $layoutContent);
 }
 
@@ -46,7 +60,7 @@ public function renderView($view){
    $callback =$this->routes[$method][$path] ?? false;
    if($callback ===false){
     $this->response->setStatusCode(404);
-    return "Not Found";
+    return $this->renderContent('Not Found');
     
    };
 
@@ -54,8 +68,14 @@ public function renderView($view){
     return $this->renderView($callback);
 
    };
+   if(is_array($callback)){
+    $controller = new $callback[0]();
+    $method = $callback[1];
+    $callback = [$controller, $method];
+   }
 
-   return call_user_func($callback);
+
+   return call_user_func($callback,$this->request);
 
 
 
