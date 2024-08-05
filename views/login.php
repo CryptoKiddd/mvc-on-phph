@@ -6,8 +6,8 @@
     <input type="email" class="form-control" name="email">
   </div>
   <div class="mb-3">
-    <label>Body</label>
-    <textarea type="text" class="form-control" name="body"></textarea>
+    <label>password</label>
+    <input type="password" class="form-control" name="password"></input>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
